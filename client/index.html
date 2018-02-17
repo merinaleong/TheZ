@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Toronto Trip 2018</title>
+</head>
+<body>
+    <h3>Toronto Trip 2018</h3>
+    <button id="btnAdd">Add Event</button>
+    <button id="btnEdit">Edit</button>
+    <button id="btnDelete">Delete</button>
+
+    <pre id="preOutput"></pre>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script>
+        $(function () {
+            var addEvent = function () {
+               //url to create new event var url = "https://stark-dawn-64107.herokuapp.com/api/countries/";
+                $.get(url).always(showResponse);
+                return false;
+            };
+
+            var showResponse = function (object) {
+                $("#preOutput").text(JSON.stringify(object, null, 4));
+            };
+
+            $("#btnAdd").click(addEvent);
+        });
+    </script>
+
+</body>
+</html>
