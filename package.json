@@ -2,6 +2,18 @@
   "scripts": {
     "start": "node server.js"
   },
-  "name": "",
-  "version": ""
+  "name": "thez",
+  "description": "Client and Server Web-App powered by MEAN stack",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merinaleong/TheZ.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/merinaleong/TheZ/issues"
+  },
+  "homepage": "https://github.com/merinaleong/TheZ#readme"
 }

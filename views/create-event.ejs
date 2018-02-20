@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head><title>Admin Dashboard</title>
+ <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+</head>
+<body>
+  <h1>Administrator Dashboard</h1>
+    <form name="Add" method="POST" action="">
+      <table>
+        <tr>
+          <td> Event Name </td>
+          <td><input type="text" name="eventid"></td>
+        </tr>
+        <tr>
+          <td> Event Date </td>
+          <td><input type="date" name="eventdate"></td>
+        </tr>
+        <tr>
+          <td> Start Hour </td>
+          <td><input type="time" name="starthour"></td>
+        </tr>
+        <tr>
+          <td> End Hour </td>
+          <td><input type="time" name="endhour"></td>
+        </tr>
+        <tr>
+          <td> Is Active? </td>
+          <td><input type="checkbox" name="isactive" value="Active?">Is Active?</td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="button" class="btn btn-primary" value="Save" method="POST"></td>
+          <td colspan="2"><button type="button" class="btn btn-primary" value="Update" method="PUT"></td>
+          <td colspan="2"><button type="button" class="btn btn-danger" value="Delete" method="DELETE"></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
