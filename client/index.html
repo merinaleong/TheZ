@@ -16,7 +16,7 @@
     <script>
         $(function () {
             var addEvent = function () {
-               //url to create new event var url = "https://stark-dawn-64107.herokuapp.com/api/countries/";
+               var url = "http://localhost:3000/api/addEvent";
                 $.get(url).always(showResponse);
                 return false;
             };

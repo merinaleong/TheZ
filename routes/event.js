@@ -7,8 +7,8 @@ var router = express.Router();
 
 // get all events
 router.get("/event", function(req, res, next) {
-    //res.send("COUNTRIES API");
-    db.countries.find( (err, data) => {
+    //res.send("EVENTS API");
+    db.event.find( (err, data) => {
         if(err)
             res.send(err);
 
@@ -18,7 +18,7 @@ router.get("/event", function(req, res, next) {
 
 // get one event by id
 router.get("/event/:id", function(req, res, next) {
-    db.countries.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, data){
+    db.event.findOne({_id: mongojs.ObjectId(req.params.id)},function(err, data){
         if (err) {
             res.send(err);
         }
@@ -28,19 +28,19 @@ router.get("/event/:id", function(req, res, next) {
 
 // add an event
 router.post("/event", function(req, res, next) {
-    var c = req.body;
+    var e = req.body;
 
-    if (!c.population) {
-        c.population = 0;
+    if (!e.IsActive) {
+        e.IsActive = true; 
     }
 
-    if (!c.country)  {
+    if ((!e.Event_ID) || (!e.Event_To_Time) || (!e.Event_From_Time) || (!e.Activity_Type) )  {
         res.status(400);
         res.json(
             {"error": "Bad data, could not be inserted into the database."}
         )
     } else {
-        db.countries.save(c, function(err, data) {
+        db.event.save(c, function(err, data) {
             if (err) {
                 res.send(err);
             }
@@ -51,7 +51,7 @@ router.post("/event", function(req, res, next) {
 
 // delete an event
 router.delete("/event/:id", function(req, res, next) {
-    db.countries.remove({_id: mongojs.ObjectId(req.params.id)},function(err, data){
+    db.event.remove({_id: mongojs.ObjectId(req.params.id)},function(err, data){
         if (err) {
             res.send(err);
         }
@@ -61,15 +61,27 @@ router.delete("/event/:id", function(req, res, next) {
 
 // edit an event
 router.put("/event/:id", function(req, res, next) {
-    var c = req.body;
-    var c2 = {}; 
+    var e = req.body;
+    var e2 = {}; 
 
-    if (c.country) {
-        c2.country = c.country;
+    if (e.Event_ID) {
+        e2.Event_ID = e.Event_ID;
     }
 
-    if (c.population) {
-        c2.population = c.population;
+    if (e.Event_To_Time) {
+        e2.Event_To_Time = e.Event_To_Time;
+    }
+
+    if (e.Event_From_Time) {
+        e2.Event_From_Time = e.Event_From_Time;
+    }
+
+    if (e.Activity_Type) {
+        (e2.Activity_Type) = (e.Activity_Type);
+    }
+
+    if (e.IsActive) {
+        e2.IsActive = e.IsActive;
     }
 
     if (!c2) {
@@ -78,7 +90,7 @@ router.put("/event/:id", function(req, res, next) {
             {"error": "Bad Data"}
         )        
     } else {
-        db.countries.update({_id: mongojs.ObjectId(req.params.id)}, c2,{},function(err, data){
+        db.event.update({_id: mongojs.ObjectId(req.params.id)}, e2,{},function(err, data){
             if (err) {
                 res.send(err);
             }
