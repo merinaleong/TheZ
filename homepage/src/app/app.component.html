@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <table *ngFor = "let e of events; let i = index;" border="2" width="50%" cellpadding="2" cellspacing="3">
+    <tr>
+      <th *ngIf = "(e.Event_From_Time | date: 'shortDate')" colspan="2" border = "1">
+        <h2 >{{e.Event_From_Time | date: 'shortDate'}}</h2>
+        <tr width="50%">
+          <th>{{e.Event_From_Time | date: 'mediumTime'}} to {{e.Event_To_Time | date: 'mediumTime'}}</th>
+          <th>{{e.Event_ID}}</th>
+          </tr>
+          </th>
+          </tr>
+          <tr>
+    </table>    
