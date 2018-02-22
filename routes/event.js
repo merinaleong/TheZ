@@ -1,9 +1,13 @@
 var express = require("express");
-var mongojs = require('mongojs'); 
+var mongojs = require('mongojs');
 var config = require('../config');
-var db = mongojs(config.database_mlab, ['event']); 
+var db = mongojs(config.database_mlab, ['event']);
 
 var router = express.Router();
+
+router.use("/", (req, res) => {
+  res.sendFile(__dirname, "/create-event.ejs");
+})
 
 // get all events
 router.get("/event", function(req, res, next) {
@@ -12,7 +16,7 @@ router.get("/event", function(req, res, next) {
         if(err)
             res.send(err);
 
-        res.json(data); 
+        res.json(data);
     })
 });
 
@@ -27,11 +31,11 @@ router.get("/event/:id", function(req, res, next) {
 });
 
 // add an event
-router.post("/event", function(req, res, next) {
-    var e = req.body;
+router.post("/addEvent", function(req, res, next) {
+    /*var e = req.body;
 
     if (!e.IsActive) {
-        e.IsActive = true; 
+        e.IsActive = true;
     }
 
     if ((!e.Event_ID) || (!e.Event_To_Time) || (!e.Event_From_Time) || (!e.Activity_Type) )  {
@@ -47,6 +51,15 @@ router.post("/event", function(req, res, next) {
             res.json(data);
         })
     }
+    */
+    var eventData = new User(req.body);
+    eventData.save()
+      .then(item => {
+        res.send("item saved to database");
+      })
+      .catch(err => {
+        res.status(400).send("unable to save to database");
+      });
 });
 
 // delete an event
@@ -62,7 +75,7 @@ router.delete("/event/:id", function(req, res, next) {
 // edit an event
 router.put("/event/:id", function(req, res, next) {
     var e = req.body;
-    var e2 = {}; 
+    var e2 = {};
 
     if (e.Event_ID) {
         e2.Event_ID = e.Event_ID;
@@ -88,7 +101,7 @@ router.put("/event/:id", function(req, res, next) {
         res.status(400);
         res.json(
             {"error": "Bad Data"}
-        )        
+        )
     } else {
         db.event.update({_id: mongojs.ObjectId(req.params.id)}, e2,{},function(err, data){
             if (err) {
@@ -101,5 +114,4 @@ router.put("/event/:id", function(req, res, next) {
 
 
 
-module.exports = router; 
-
+module.exports = router;
