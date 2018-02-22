@@ -16,7 +16,7 @@
     <script>
         $(function () {
             var addEvent = function () {
-               var url = "http://localhost:3000/api/addEvent";
+               var url = "http://localhost:3000/addEvent";
                 $.get(url).always(showResponse);
                 return false;
             };
@@ -27,6 +27,10 @@
 
             $("#btnAdd").click(addEvent);
         });
+
+        $(function () {
+          var adminMenu
+        })
     </script>
 
 </body>
