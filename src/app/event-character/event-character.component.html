@@ -1,0 +1,9 @@
+<div *ngIf="event_type">
+  <p>Event ID: {{event_type._id}}</p>
+  <p>Activity ID: {{event_type.Activity_ID}}</p>
+  <p>Activity Description: {{event_type.Activity_Description}}</p>
+  <p>Creation Date: {{event_type.Creation_Date | date: 'mediumDate'}}</p>
+
+
+  <button (click)="goBack()">Back</button>
+</div>

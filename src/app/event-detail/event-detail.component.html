@@ -1,0 +1,10 @@
+<div *ngIf="event">
+  <p>Event Name: {{event.Event_ID}}</p>
+  <a [routerLink]="['/detail/id', event.Activity_Type]"  class="col-1-30">Activity Type: {{event.Activity_Type}}</a>
+  <p>Start Date: {{event.Event_From_Time | date: 'medium'}}</p>
+  <p>End Date: {{event.Event_To_Time | date: 'medium'}}</p>
+  <p>Creation Date: {{event.Creation_Date | date: 'mediumDate'}}</p>
+
+
+  <button (click)="goBack()">Back</button>
+</div>
